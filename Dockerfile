@@ -80,6 +80,5 @@ COPY httpd-foreground /usr/local/bin/
 
 EXPOSE 80/tcp
 
-#CMD [ "/usr/local/apache2/bin/httpd", "-f", "/appli/apache/https/conf/httpd.conf", "-DFOREGROUND" ]
 #CMD [ "/bin/bash" ]
 CMD ["httpd-foreground"]
