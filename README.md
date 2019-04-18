@@ -14,27 +14,30 @@ The Apache HTTP Server Project with mod_maxminddb module from [MAXMIND](https://
 
 ### Simple Usage
 
-	docker run -d -p 3310:3310 ggregorio/httpd
+	docker run -d -p 80:80 ggregorio/httpd
 
-### Usage with persistent data
+### Usage with specifique uid/gid
 
-	docker run -d -p 3310:3310 -v $(pwd)/data:/data ggregorio/clamavd
+```
+docker run -d \
+	-e HTTPD_USER_ID=1000 \
+	-e HTTPD_GROUP_ID=1000 \
+	-p 80:80 \
+	ggregorio/httpd
+```
 
-## Documentation
+## Quick reference
 
-### For Apache HTTP Server
-
-* [Apache HTTP Server Version 2.4 Documentation](http://httpd.apache.org/docs/2.4/)
-* [httpd Docker Official Images](https://hub.docker.com/_/httpd)
-
-### For MAXMIND mod_maxminddb
-
-* [MaxMind DB Apache Module](http://maxmind.github.io/mod_maxminddb/)
-* [GitHub maxmind / mod_maxminddb](https://github.com/maxmind/mod_maxminddb)
+* Apache HTTP Server
+  * [Apache HTTP Server Version 2.4 Documentation](http://httpd.apache.org/docs/2.4/)
+  * [httpd Docker Official Images](https://hub.docker.com/_/httpd)
+* MAXMIND mod_maxminddb
+  * [MaxMind DB Apache Module](http://maxmind.github.io/mod_maxminddb/)
+  * [GitHub maxmind / mod_maxminddb](https://github.com/maxmind/mod_maxminddb)
 
 ## Configuration (environment variables)
 
 | Environment variable | Default value | Description                                             |
 | :------------------- | ------------: | :------------------------------------------------------ |
-| HTTPD_USER_ID        | 33            | The userid under which the server will answer requests. |
-| HTTPD_GROUP_ID       | 33            | Group under which the server will answer requests.      |
+| `HTTPD_USER_ID`      | 33            | The userid under which the server will answer requests. |
+| `HTTPD_GROUP_ID`     | 33            | Group under which the server will answer requests.      |
