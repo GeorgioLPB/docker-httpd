@@ -4,13 +4,15 @@ set -e
 #
 # Configuration du user par défaut
 #
-if [ -z "$(grep "^www-data:x:${HTTPD_USER_ID}:" '/etc/passwd')" ] ; then
-	current_id="$(grep "^www-data:x:" '/etc/passwd' | head -1 | awk -F: '{print $3}')"
-	sed -i "s/^www-data:x:${current_id}:/^www-data:x:${HTTPD_USER_ID}:/g" '/etc/passwd'
-fi
 if [ -z "$(grep "^www-data:x:${HTTPD_GROUP_ID}:" '/etc/group')" ] ; then
-	current_id="$(grep "^www-data:x:" '/etc/group' | head -1 | awk -F: '{print $3}')"
-	sed -i "s/^www-data:x:${current_id}:/^www-data:x:${HTTPD_GROUP_ID}:/g" '/etc/group'
+	current_gid="$(grep "^www-data:x:" '/etc/group' | head -1 | awk -F: '{print $3}')"
+	sed -i "s/^www-data:x:${current_gid}:/www-data:x:${HTTPD_GROUP_ID}:/g" '/etc/group'
+else
+	current_gid="${HTTPD_GROUP_ID}"
+fi
+if [ -z "$(grep "^www-data:x:${HTTPD_USER_ID}:${HTTPD_GROUP_ID}:" '/etc/passwd')" ] ; then
+	current_uid="$(grep "^www-data:x:" '/etc/passwd' | head -1 | awk -F: '{print $3}')"
+	sed -i "s/^www-data:x:${current_uid}:${current_gid}:/www-data:x:${HTTPD_USER_ID}:${HTTPD_GROUP_ID}:/g" '/etc/passwd'
 fi
 
 # Apache gets grumpy about PID files pre-existing
