@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+#
+# Configuration du user par défaut
+#
+if [ -z "$(grep "^www-data:x:${HTTPD_USER_ID}:" '/etc/passwd')" ] ; then
+	current_id="$(grep "^www-data:x:" '/etc/passwd' | head -1 | awk -F: '{print $3}')"
+	sed -i "s/^www-data:x:${current_id}:/^www-data:x:${HTTPD_USER_ID}:/g" '/etc/passwd'
+fi
+if [ -z "$(grep "^www-data:x:${HTTPD_GROUP_ID}:" '/etc/group')" ] ; then
+	current_id="$(grep "^www-data:x:" '/etc/group' | head -1 | awk -F: '{print $3}')"
+	sed -i "s/^www-data:x:${current_id}:/^www-data:x:${HTTPD_GROUP_ID}:/g" '/etc/group'
+fi
+
+# Apache gets grumpy about PID files pre-existing
+rm -f /usr/local/apache2/logs/httpd.pid
+
+exec httpd -DFOREGROUND
