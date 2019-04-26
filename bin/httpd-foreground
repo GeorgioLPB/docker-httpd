@@ -15,6 +15,11 @@ if [ -z "$(grep "^www-data:x:${HTTPD_USER_ID}:${HTTPD_GROUP_ID}:" '/etc/passwd')
 	sed -i "s/^www-data:x:${current_uid}:${current_gid}:/www-data:x:${HTTPD_USER_ID}:${HTTPD_GROUP_ID}:/g" '/etc/passwd'
 fi
 
+#
+# Initialisation GeoIP databases
+#
+[ ! -f "/usr/local/apache2/maxmind/GeoLite2-Country.mmdb" ] && update_geo2ip_database
+
 # Apache gets grumpy about PID files pre-existing
 rm -f /usr/local/apache2/logs/httpd.pid
 

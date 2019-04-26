@@ -1,10 +1,10 @@
-# The Apache HTTP Server container with GeoIP2 MAXMIND
+# The Apache HTTP Server container with ModSecurity, OWASP ModSecurity Core Rule Set (CRS) and GeoIP2 MAXMIND
 
-The [Apache HTTP Server Project](http://httpd.apache.org/) with mod_maxminddb module from [MAXMIND](https://www.maxmind.com/) for GeoIP localisation
+The [Apache HTTP Server Project](http://httpd.apache.org/) with mod_security module from [ModSecurity](http://modsecurity.org/), [OWASP ModSecurity Core Rule Set](https://github.com/SpiderLabs/owasp-modsecurity-crs) and mod_maxminddb module from [MAXMIND](https://www.maxmind.com/) for GeoIP localisation
 
-| Tags   | Debian       | Apache HTTP Server | MAXMIND Library | MAXMIND Module |
-| :----: | :----------: | -----------------: | --------------: | -------------: |
-| 2.4.39 | stretch-slim | 2.4.39             | 1.3.2           |          1.1.0 |
+| Tags     | Debian         | Apache HTTP Server | ModSecurity | OWASP CRS | MAXMIND Library | MAXMIND Module |
+| :------: | :------------: | -----------------: | ----------: | --------: | --------------: | -------------: |
+| `2.4.39` | `stretch-slim` | `2.4.39`           | `2.9.3`     | `3.1.0`   | `1.3.2`         | `1.1.0`        |
 
 ## Supported tags and respective Dockerfile links
 
@@ -31,6 +31,9 @@ docker run -d \
 * Apache HTTP Server
   * [Apache HTTP Server Version 2.4 Documentation](http://httpd.apache.org/docs/2.4/)
   * [httpd Docker Official Images](https://hub.docker.com/_/httpd)
+* ModSecurity mod_security
+  * [ModSecurity Documentation](http://modsecurity.org/documentation.html)
+  * [OWASP ModSecurity Core Rule Set (CRS)](https://github.com/SpiderLabs/owasp-modsecurity-crs)
 * MAXMIND mod_maxminddb
   * [MaxMind DB Apache Module](http://maxmind.github.io/mod_maxminddb/)
   * [GitHub maxmind / mod_maxminddb](https://github.com/maxmind/mod_maxminddb)
