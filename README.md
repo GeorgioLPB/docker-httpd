@@ -16,6 +16,10 @@ The [Apache HTTP Server Project](http://httpd.apache.org/) with mod_security mod
 
 	docker run -d -p 80:80 ggregorio/httpd
 
+### Update GeoIP2 Databases
+
+	docker exec <container_name> update_geoip2_database
+
 ### Usage with specifique uid/gid
 
 ```

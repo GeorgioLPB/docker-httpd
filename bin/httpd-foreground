@@ -18,7 +18,7 @@ fi
 #
 # Initialisation GeoIP databases
 #
-[ ! -f "/usr/local/apache2/maxmind/GeoLite2-Country.mmdb" ] && update_geo2ip_database
+[ ! -f "/usr/local/apache2/maxmind/GeoLite2-Country.mmdb" ] && update_geoip2_database
 
 # Apache gets grumpy about PID files pre-existing
 rm -f /usr/local/apache2/logs/httpd.pid
