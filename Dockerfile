@@ -28,12 +28,12 @@ RUN set -eux;\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates wget pkg-config dpkg-dev gcc g++ cpp make libtool autoconf \
-		libpcre3-dev libxml2-dev \
+		libpcre3-dev libxml2-dev libyajl-dev \
 		\
 		&& rm -r /var/lib/apt/lists/* && \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" && \
 	#
-	# Installation de module mod_maxminddb
+	# Install libmaxminddb
 	#
 	mkdir -p '/var/install' && \
 		cd '/var/install' && \
@@ -51,6 +51,9 @@ RUN set -eux;\
 		chmod -R u=rwX,g=rX,o=rX "/opt/libmaxminddb" && \
 		unset CFLAGS CPPFLAGS LDFLAGS && \
 		rm -rf /var/install/* && \
+	#
+	# Install mod_maxminddb
+	#
 	mkdir -p '/var/install' && \
 		cd '/var/install' && \
 		wget -O "mod_maxminddb-${MAXMIND_MOD}.tar.gz" \
@@ -67,6 +70,9 @@ RUN set -eux;\
 		chmod 644 '/usr/local/apache2/modules/mod_maxminddb.so' && \
 		unset CFLAGS CPPFLAGS LDFLAGS && \
 		rm -rf /var/install/* && \
+	#
+	# Install mod_security2
+	#
 	mkdir -p '/var/install' && \
 		cd '/var/install' && \
 		wget -O "modsecurity-${MODSECURITY}.tar.gz" "${MODSECURITY_URL}" && \
@@ -91,6 +97,9 @@ RUN set -eux;\
 		chmod -R u=rwX,g=rX,o=rX '/opt/modsecurity' && \
 		unset CFLAGS CPPFLAGS LDFLAGS && \
 		rm -rf /var/install/* && \
+	#
+	# Install owasp-modsecurity-crs
+	#
 	cd '/usr/local/apache2/conf' && \
 		wget -O "owasp-modsecurity-crs-${OWASP_MODSECURITY_CRS}.tar.gz" "${OWASP_MODSECURITY_CRS_URL}" && \
 		tar -zxvf "owasp-modsecurity-crs-${OWASP_MODSECURITY_CRS}.tar.gz" && \
@@ -113,12 +122,12 @@ RUN set -eux;\
 	#	| xargs -r dpkg-query --search | cut -d: -f1 | sort -u \
 	#	| xargs -r apt-mark manual; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && \
+	apt-get update && \
+	apt-get install -y --no-install-recommends ca-certificates wget libyajl2 && \
 	rm -r /var/lib/apt/lists/*;
 
 ADD bin/ /usr/local/apache2/bin/
 
 EXPOSE 80/tcp 443/tcp
 
-#CMD [ "/bin/bash" ]
 CMD ["httpd-foreground"]
