@@ -4,6 +4,8 @@ FROM httpd:2.4.39
 # https://hub.docker.com/_/httpd
 # https://github.com/maxmind/libmaxminddb/releases
 # https://github.com/maxmind/mod_maxminddb/releases
+# http://modsecurity.org/download.html
+# https://github.com/SpiderLabs/owasp-modsecurity-crs/releases
 #
 LABEL \
 	httpd 2.4.39 \
@@ -16,8 +18,8 @@ ENV \
 	MODSECURITY="2.9.3" \
 	MODSECURITY_URL="https://www.modsecurity.org/tarball/2.9.3/modsecurity-2.9.3.tar.gz" \
 	MODSECURITY_SHA256="4192019d169d3f1dd82cc4714db6986df54c6ceb4ee1c8f253de78d1a6b62118" \
-	OWASP_MODSECURITY_CRS="3.1.0" \
-	OWASP_MODSECURITY_CRS_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.1.0.tar.gz" \
+	OWASP_MODSECURITY_CRS="3.1.1" \
+	OWASP_MODSECURITY_CRS_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.1.1.tar.gz" \
 	HTTPD_USER_ID="33" \
 	HTTPD_GROUP_ID="33"
 

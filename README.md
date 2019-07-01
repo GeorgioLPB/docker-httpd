@@ -4,7 +4,7 @@
 
 | Tags     | Apache HTTP Server | ModSecurity | OWASP CRS | MAXMIND Library | MAXMIND Module |
 | :------: | -----------------: | ----------: | --------: | --------------: | -------------: |
-| `latest` | `2.4.39`           | `2.9.3`     | `3.1.0`   | `1.3.2`         | `1.1.0`        |
+| `latest` | `2.4.39`           | `2.9.3`     | `3.1.1`   | `1.3.2`         | `1.1.0`        |
 
 
 * [latest, (latest/Dockerfile)](https://github.com/GeorgioLPB/docker-httpd/blob/master/Dockerfile)
