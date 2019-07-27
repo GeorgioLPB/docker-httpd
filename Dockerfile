@@ -125,7 +125,7 @@ RUN set -eux;\
 	#	| xargs -r apt-mark manual; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget libyajl2 libperl5.28 perl-modules-5.28 && \
+	apt-get install -y --no-install-recommends ca-certificates wget libyajl2 libperl5.28 perl-modules-5.28 libgeo-ipfree-perl && \
 	rm -r /var/lib/apt/lists/*;
 
 ADD bin/ /usr/local/apache2/bin/
