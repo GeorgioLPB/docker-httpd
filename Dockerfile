@@ -1,4 +1,4 @@
-FROM httpd:2.4.39
+FROM httpd:2.4.41
 #
 # http://httpd.apache.org/
 # https://hub.docker.com/_/httpd
@@ -8,7 +8,7 @@ FROM httpd:2.4.39
 # https://github.com/SpiderLabs/owasp-modsecurity-crs/releases
 #
 LABEL \
-	httpd 2.4.39 \
+	httpd 2.4.41 \
 	maintainer georges.gregorio@gmail.com
 
 ENV \
