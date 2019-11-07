@@ -80,7 +80,7 @@ RUN set -eux;\
 		wget -O "modsecurity-${MODSECURITY}.tar.gz" "${MODSECURITY_URL}" && \
 		echo "${MODSECURITY_SHA256} *modsecurity-${MODSECURITY}.tar.gz" | sha256sum -c && \
 		tar -zxvf "modsecurity-${MODSECURITY}.tar.gz" && \
-		cd "modsecurity-${MODSECURITY}" && \
+		cd "modsecurity-v${MODSECURITY}" && \
 		export CFLAGS="-fstack-protector-strong -fpic -O2" && \
 		export CPPFLAGS="${CFLAGS}" && \
 		export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu" && \
