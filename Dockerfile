@@ -12,14 +12,14 @@ LABEL \
 	maintainer georges.gregorio@gmail.com
 
 ENV \
-	MAXMIND_LIB="1.3.2" \
+	MAXMIND_LIB="1.4.2" \
 	MAXMIND_MOD="1.1.0" \
 	MAXMIND_DATABASE_URL="https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz" \
-	MODSECURITY="2.9.3" \
-	MODSECURITY_URL="https://www.modsecurity.org/tarball/2.9.3/modsecurity-2.9.3.tar.gz" \
-	MODSECURITY_SHA256="4192019d169d3f1dd82cc4714db6986df54c6ceb4ee1c8f253de78d1a6b62118" \
-	OWASP_MODSECURITY_CRS="3.1.1" \
-	OWASP_MODSECURITY_CRS_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.1.1.tar.gz" \
+	MODSECURITY="3.0.3" \
+	MODSECURITY_URL="https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.3/modsecurity-v3.0.3.tar.gz" \
+	MODSECURITY_SHA256="8aa1300105d8cc23315a5e54421192bc617a66246ad004bd89e67c232208d0f4" \
+	OWASP_MODSECURITY_CRS="3.2.0" \
+	OWASP_MODSECURITY_CRS_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.2.0.tar.gz" \
 	HTTPD_USER_ID="33" \
 	HTTPD_GROUP_ID="33"
 
