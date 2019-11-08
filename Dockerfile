@@ -15,9 +15,9 @@ ENV \
 	MAXMIND_LIB="1.4.2" \
 	MAXMIND_MOD="1.1.0" \
 	MAXMIND_DATABASE_URL="https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz" \
-	MODSECURITY="3.0.3" \
-	MODSECURITY_URL="https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.3/modsecurity-v3.0.3.tar.gz" \
-	MODSECURITY_SHA256="8aa1300105d8cc23315a5e54421192bc617a66246ad004bd89e67c232208d0f4" \
+	MODSECURITY="2.9.3" \
+	MODSECURITY_URL="https://www.modsecurity.org/tarball/2.9.3/modsecurity-2.9.3.tar.gz" \
+	MODSECURITY_SHA256="4192019d169d3f1dd82cc4714db6986df54c6ceb4ee1c8f253de78d1a6b62118" \
 	OWASP_MODSECURITY_CRS="3.2.0" \
 	OWASP_MODSECURITY_CRS_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.2.0.tar.gz" \
 	HTTPD_USER_ID="33" \
@@ -31,6 +31,7 @@ RUN set -eux;\
 	apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates wget pkg-config dpkg-dev gcc g++ cpp make libtool autoconf \
 		libpcre3-dev libxml2-dev libyajl-dev \
+		libcurl4-openssl-dev liblua5.2-dev \
 		\
 		&& rm -r /var/lib/apt/lists/* && \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" && \
@@ -80,15 +81,11 @@ RUN set -eux;\
 		wget -O "modsecurity-${MODSECURITY}.tar.gz" "${MODSECURITY_URL}" && \
 		echo "${MODSECURITY_SHA256} *modsecurity-${MODSECURITY}.tar.gz" | sha256sum -c && \
 		tar -zxvf "modsecurity-${MODSECURITY}.tar.gz" && \
-		cd "modsecurity-v${MODSECURITY}" && \
+		cd "modsecurity-${MODSECURITY}" && \
 		export CFLAGS="-fstack-protector-strong -fpic -O2" && \
 		export CPPFLAGS="${CFLAGS}" && \
 		export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu" && \
 		./configure --prefix="/opt/modsecurity" \
-			--with-apr='/usr' \
-			--with-apu='/usr' \
-			--with-apxs='/usr/local/apache2/bin/apxs' \
-			--with-pcre='/usr' \
 			--enable-pcre-jit \
 			--enable-lua-cache \
 			--enable-request-early \
@@ -119,13 +116,13 @@ RUN set -eux;\
 	#
 	apt-mark auto '.*' > /dev/null && \
 	[ -z "$savedAptMark" ] || apt-mark manual $savedAptMark && \
-	#find /usr/local -type f -executable -exec ldd '{}' ';' \
-	#	| awk '/=>/ { print $(NF-1) }' | sort -u \
-	#	| xargs -r dpkg-query --search | cut -d: -f1 | sort -u \
-	#	| xargs -r apt-mark manual; \
+	find /usr/local -type f -executable -exec ldd '{}' ';' \
+		| awk '/=>/ { print $(NF-1) }' | sort -u \
+		| xargs -r dpkg-query --search | cut -d: -f1 | sort -u \
+		| xargs -r apt-mark manual; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget libyajl2 libperl5.28 perl-modules-5.28 libgeo-ipfree-perl && \
+	apt-get install -y --no-install-recommends ca-certificates wget libyajl2 && \
 	rm -r /var/lib/apt/lists/*;
 
 ADD bin/ /usr/local/apache2/bin/
