@@ -22,7 +22,7 @@ RUN set -eux;\
 	# Installation des outils de compilation
 	#
 	apt-get update && apt-get install -y --no-install-recommends \
-		gcc make libtool autoconf automake libpcre3-dev libxml2-dev libcurl4-openssl-dev && \
+		gcc make libtool autoconf automake libpcre3-dev libxml2-dev libcurl4-openssl-dev libyajl-dev && \
 	#
 	# Install mod_security2
 	#
@@ -64,8 +64,9 @@ RUN set -eux;\
 	# Suppression des outils de compilation
 	#
 	unset CFLAGS CPPFLAGS LDFLAGS && \
-	apt-get remove -y gcc make libtool autoconf automake libpcre3-dev libxml2-dev libcurl4-openssl-dev && \
+	apt-get remove -y gcc make libtool autoconf automake libpcre3-dev libxml2-dev libcurl4-openssl-dev libyajl-dev && \
 	apt-get autoremove -y && \
+	apt-get install libyajl2 && \
 	rm -r /var/lib/apt/lists/* && \
 	rm -rf /tmp/modsecurity* /tmp/libmaxminddb* /tmp/mod_maxminddb*
 
