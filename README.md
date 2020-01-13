@@ -1,10 +1,10 @@
-# The Apache HTTP Server container with ModSecurity, OWASP ModSecurity Core Rule Set (CRS) and GeoIP2 MAXMIND
+# The Apache HTTP Server container with GeoIP2 MAXMIND
 
 ## Supported tags and respective `Dockerfile` links
 
-| Tags     | Apache HTTP Server | ModSecurity | MAXMIND Library | MAXMIND Module |
-| :------: | -----------------: | ----------: | --------------: | -------------: |
-| `latest` | `2.4.41`           | `2.9.3`     | `1.4.2`         | `1.1.0`        |
+| Tags     | Apache HTTP Server | MAXMIND Library | MAXMIND Module |
+|:--------:|-------------------:|----------------:|---------------:|
+| `latest` | `2.4.41`           |  `1.4.2`        | `1.1.0`        |
 
 
 * [latest, (latest/Dockerfile)](https://github.com/GeorgioLPB/docker-httpd/blob/master/Dockerfile)
