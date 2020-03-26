@@ -12,10 +12,10 @@ LABEL \
 
 ENV \
 	MAXMIND_LIB="1.4.2" \
-	MAXMIND_MOD="1.1.0"
+	MAXMIND_MOD="1.2.0"
 
 ADD https://github.com/maxmind/libmaxminddb/releases/download/1.4.2/libmaxminddb-1.4.2.tar.gz /tmp/
-ADD https://github.com/maxmind/mod_maxminddb/releases/download/1.1.0/mod_maxminddb-1.1.0.tar.gz /tmp/
+ADD https://github.com/maxmind/mod_maxminddb/releases/download/1.2.0/mod_maxminddb-1.2.0.tar.gz /tmp/
 
 RUN set -eux;\
 	#
