@@ -1,4 +1,4 @@
-FROM httpd:2.4.41
+FROM httpd:2.4.43
 #
 # http://httpd.apache.org/
 # https://hub.docker.com/_/httpd
@@ -50,3 +50,4 @@ RUN set -eux;\
 	apt-get clean -y && \
 	rm -r /var/lib/apt/lists/* && \
 	rm -rf /tmp/libmaxminddb* /tmp/mod_maxminddb*
+
