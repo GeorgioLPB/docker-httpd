@@ -1,4 +1,4 @@
-FROM httpd:2.4.43
+FROM httpd:2.4.46
 #
 # http://httpd.apache.org/
 # https://hub.docker.com/_/httpd
