@@ -11,10 +11,10 @@ LABEL \
 	maintainer georges.gregorio@gmail.com
 
 ENV \
-	MAXMIND_LIB="1.4.2" \
+	MAXMIND_LIB="1.4.3" \
 	MAXMIND_MOD="1.2.0"
 
-ADD https://github.com/maxmind/libmaxminddb/releases/download/1.4.2/libmaxminddb-1.4.2.tar.gz /tmp/
+ADD https://github.com/maxmind/libmaxminddb/releases/download/1.4.3/libmaxminddb-1.4.3.tar.gz /tmp/
 ADD https://github.com/maxmind/mod_maxminddb/releases/download/1.2.0/mod_maxminddb-1.2.0.tar.gz /tmp/
 
 RUN set -eux;\
