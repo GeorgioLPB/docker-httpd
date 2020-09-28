@@ -21,7 +21,9 @@ RUN set -eux;\
 	#
 	# Installation des outils de compilation
 	#
-	apt-get update && apt-get install -y --no-install-recommends gcc make  && \
+	apt-get update && \
+	apt-get install -y --no-install-recommends gcc make  && \
+	apt-get install -y --no-install-recommends libaprutil1-dbd-mysql && \
 	export CFLAGS="-fstack-protector-strong -fpic -O2" && \
 	export CPPFLAGS="${CFLAGS}" && \
 	export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu" && \
