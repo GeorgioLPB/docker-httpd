@@ -22,7 +22,7 @@ RUN set -eux;\
 	# Installation des outils de compilation
 	#
 	apt-get update && \
-	apt-get install -y --no-install-recommends gcc make  && \
+	apt-get install -y --no-install-recommends gcc make libncurses5-dev libapr1-dev libaprutil1-dev && \
 	apt-get install -y --no-install-recommends libaprutil1-dbd-mysql && \
 	export CFLAGS="-fstack-protector-strong -fpic -O2" && \
 	export CPPFLAGS="${CFLAGS}" && \
@@ -47,9 +47,8 @@ RUN set -eux;\
 	# Suppression des outils de compilation
 	#
 	unset CFLAGS CPPFLAGS LDFLAGS && \
-	apt-get remove -y gcc make && \
+	apt-get remove -y gcc make libncurses5-dev libapr1-dev libaprutil1-dev && \
 	apt-get autoremove -y && \
 	apt-get clean -y && \
 	rm -r /var/lib/apt/lists/* && \
 	rm -rf /tmp/libmaxminddb* /tmp/mod_maxminddb*
-
