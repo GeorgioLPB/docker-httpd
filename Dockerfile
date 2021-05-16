@@ -11,10 +11,10 @@ LABEL \
 	maintainer georges.gregorio@gmail.com
 
 ENV \
-	MAXMIND_LIB="1.4.3" \
+	MAXMIND_LIB="1.6.0" \
 	MAXMIND_MOD="1.2.0"
 
-ADD https://github.com/maxmind/libmaxminddb/releases/download/1.4.3/libmaxminddb-1.4.3.tar.gz /tmp/
+ADD https://github.com/maxmind/libmaxminddb/releases/download/1.6.0/libmaxminddb-1.6.0.tar.gz /tmp/
 ADD https://github.com/maxmind/mod_maxminddb/releases/download/1.2.0/mod_maxminddb-1.2.0.tar.gz /tmp/
 
 RUN set -eux;\
@@ -23,7 +23,7 @@ RUN set -eux;\
 	#
 	apt-get update && \
 	apt-get install -y --no-install-recommends gcc make libncurses5-dev libapr1-dev libaprutil1-dev && \
-	apt-get install -y --no-install-recommends libaprutil1-dbd-mysql && \
+	apt-get install -y --no-install-recommends libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql && \
 	export CFLAGS="-fstack-protector-strong -fpic -O2" && \
 	export CPPFLAGS="${CFLAGS}" && \
 	export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu" && \
@@ -52,3 +52,4 @@ RUN set -eux;\
 	apt-get clean -y && \
 	rm -r /var/lib/apt/lists/* && \
 	rm -rf /tmp/libmaxminddb* /tmp/mod_maxminddb*
+
