@@ -4,7 +4,7 @@
 
 | Tags     | Apache HTTP Server | MAXMIND Library | MAXMIND Module |
 |:--------:|-------------------:|----------------:|---------------:|
-| `latest` | `2.4.46`           |  `1.6.0`        | `1.2.0`        |
+| `latest` | `2.4.48`           |  `1.6.0`        | `1.2.0`        |
 
 
 * [latest, (latest/Dockerfile)](https://github.com/GeorgioLPB/docker-httpd/blob/master/Dockerfile)
